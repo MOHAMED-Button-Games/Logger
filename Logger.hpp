@@ -95,7 +95,7 @@ Logger::Logger(const std::string& Name, bool File)
 {
 	_Name = Name;
 	_File = File;
-	_FileName = Name;
+	_FileName = Name + ".log";
 }
 
 inline void Logger::Name(const std::string& Name)
