@@ -2,7 +2,7 @@
 Simple Logger
 
 ## Features
-* Print Text With Sub Text, Types, Time, And Name
+* Print Text With Sub Text, Time, Types, And Name
 * Save All The Print Data Into A Log File After The Program Finishs Execution, Or At Any Point In The Program
 
 ## Examples
@@ -100,5 +100,7 @@ int main()
 }
 ```
 Result: The File Should Be Outputted In The Program's Path, The Path And The Extension Can Be Changed
+
+First Line: `Name[Text][2:26:41]: Make Lots of Prints To Be Stored`
 
 ![alt text](https://i.postimg.cc/0ytbMVjS/Example.png)
