@@ -1,6 +1,10 @@
 # Logger
 Simple Logger
 
+## Features
+* Print Text With Sub Text, Types, Time, And Name
+* Save All The Print Data Into A Log File After The Program Finishs Execution, Or At Any Point In The Program
+
 ## Examples
 * Simple Print
 ```
