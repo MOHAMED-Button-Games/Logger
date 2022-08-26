@@ -18,7 +18,7 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-//(Additions/Changes).Fixes
+//Additions.Fixes
 //1.1
 
 //Created: 8/25/22
