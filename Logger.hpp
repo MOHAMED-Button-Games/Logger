@@ -19,7 +19,7 @@
 //SOFTWARE.
 
 //Additions.Fixes
-//1.2
+//2.2
 
 //Created: 8/25/22
 #pragma once
@@ -77,10 +77,10 @@ public:
 	//Print Text, char|const char*|std::string|Numbers Overloads
 	//The Type Arg Will Specify The Text Color
 	//Outputted Text: Name[Time]: Sub Text + Text
-	void Print(char Text, int Type = LOG_TEXT);
-	void Print(const char* Text, int Type = LOG_TEXT);
-	void Print(const std::string& Text, int Type = LOG_TEXT);
-	template<class T> void Print(T Text, int Type = LOG_TEXT);
+	void Print(char Text, int Type = LOG_TEXT, bool File = true);
+	void Print(const char* Text, int Type = LOG_TEXT, bool File = true);
+	void Print(const std::string& Text, int Type = LOG_TEXT, bool File = true);
+	template<class T> void Print(T Text, int Type = LOG_TEXT, bool File = true);
 
 	//Log File
 	//Outputted Text: Name[Type][Time]: Sub Text + Text
@@ -88,6 +88,8 @@ public:
 	void FileName(const std::string& Name, const std::string& Ext = ".log");
 	//Get The File Data, For Reasons Like File Compression, Printing All The Logs In The Console, etc...
 	std::string FileData();
+	//What Data??
+	void ClearFileData();
 	//Output The Log File
 	bool MakeFile();
 };
@@ -160,7 +162,7 @@ inline const char* Logger::_Type(int Type)
 	return "[Text]";
 }
 
-inline void Logger::Print(char Text, int Type)
+inline void Logger::Print(char Text, int Type, bool File)
 {
 #ifdef _WIN64
 	SetConsoleTextAttribute(_Handle, Type);
@@ -169,19 +171,19 @@ inline void Logger::Print(char Text, int Type)
 	localtime_s(&_TimeFormat, &_Time);
 	_TimeData = '[' + std::to_string(_TimeFormat.tm_hour) + ':' + std::to_string(_TimeFormat.tm_min) + ':' + std::to_string(_TimeFormat.tm_sec) + ']';
 	std::cout << _Name << _TimeData << ": " << _SubText << Text << std::endl;
-	if (_File)
+	if (_File && File)
 	{
 		_FileData += _Name + _Type(Type) + _TimeData + ": " + _SubText;
 		_FileData += Text;
 		_FileData += "\n";
 	}
-	_SubText = "";
+	_SubText.clear();
 #ifdef _WIN64
 	SetConsoleTextAttribute(_Handle, LOG_TEXT);
 #endif
 }
 
-inline void Logger::Print(const char* Text, int Type)
+inline void Logger::Print(const char* Text, int Type, bool File)
 {
 #ifdef _WIN64
 	SetConsoleTextAttribute(_Handle, Type);
@@ -190,25 +192,25 @@ inline void Logger::Print(const char* Text, int Type)
 	localtime_s(&_TimeFormat, &_Time);
 	_TimeData = '[' + std::to_string(_TimeFormat.tm_hour) + ':' + std::to_string(_TimeFormat.tm_min) + ':' + std::to_string(_TimeFormat.tm_sec) + ']';
 	std::cout << _Name << _TimeData << ": " << _SubText << Text << std::endl;
-	if (_File)
+	if (_File && File)
 	{
 		_FileData += _Name + _Type(Type) + _TimeData + ": " + _SubText;
 		_FileData += Text;
 		_FileData += "\n";
 	}
-	_SubText = "";
+	_SubText.clear();
 #ifdef _WIN64
 	SetConsoleTextAttribute(_Handle, LOG_TEXT);
 #endif
 }
 
-inline void Logger::Print(const std::string& Text, int Type)
+inline void Logger::Print(const std::string& Text, int Type, bool File)
 {
-	Print(Text.c_str(), Type);
+	Print(Text.c_str(), Type, File);
 }
 
 template<class T>
-inline void Logger::Print(T Text, int Type)
+inline void Logger::Print(T Text, int Type, bool File)
 {
 #ifdef _WIN64
 	SetConsoleTextAttribute(_Handle, Type);
@@ -217,7 +219,7 @@ inline void Logger::Print(T Text, int Type)
 	localtime_s(&_TimeFormat, &_Time);
 	_TimeData = '[' + std::to_string(_TimeFormat.tm_hour) + ':' + std::to_string(_TimeFormat.tm_min) + ':' + std::to_string(_TimeFormat.tm_sec) + ']';
 	std::cout << _Name << _TimeData << ": " << _SubText << Text << std::endl;
-	if (_File)
+	if (_File && File)
 	{
 		_FileData += _Name + _Type(Type) + _TimeData + ": " + _SubText;
 		double _Sum = floor(double(Text)) - double(Text);
@@ -231,7 +233,7 @@ inline void Logger::Print(T Text, int Type)
 		}
 		_FileData += "\n";
 	}
-	_SubText = "";
+	_SubText.clear();
 #ifdef _WIN64
 	SetConsoleTextAttribute(_Handle, LOG_TEXT);
 #endif
@@ -247,6 +249,11 @@ inline std::string Logger::FileData()
 	return _FileData;
 }
 
+inline void Logger::ClearFileData()
+{
+	_FileData.clear();
+}
+
 inline bool Logger::MakeFile()
 {
 	if (_File)
@@ -258,7 +265,9 @@ inline bool Logger::MakeFile()
 		}
 		File << _FileData;
 		File.close();
+		_FileData.clear();
 		return true;
 	}
+	_FileData.clear();
 	return false;
 }
