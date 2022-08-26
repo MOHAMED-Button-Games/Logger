@@ -1,6 +1,12 @@
 # Logger
 Simple Header-Only Library For Logging
 
+## Compilers
+Language: C++ Only
+- [X] MSVC
+- [ ] GCC (Not Tested)
+- [X] Clang/LLVM
+
 ## Features
 * Print Text With Sub Text, Time, Types, And Name
 * Save All The Print Data Into A Log File After The Program Finishs Execution, Or At Any Point In The Program
