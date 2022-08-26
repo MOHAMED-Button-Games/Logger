@@ -13,7 +13,7 @@ Language: C++ Only
 
 ## Examples
 * Simple Print
-```
+```cpp
 #include "Logger.hpp"
 
 int main()
@@ -30,7 +30,7 @@ Result: `[2:10:18]: Print Text`
 ---
 
 * Print With Sub Text
-```
+```cpp
 #include "Logger.hpp"
 
 int main()
@@ -49,7 +49,7 @@ Result: `[2:10:18]: Sub Text 1, Sub Text 2, Sub Text 3, Print Text`
 
 ---
 
-```
+```cpp
 #include "Logger.hpp"
 
 int main()
@@ -75,7 +75,7 @@ Result: If Your OS is Windows The Text Will Appear in Colors
 ---
 
 * Print With Name
-```
+```cpp
 #include "Logger.hpp"
 
 int main()
@@ -92,7 +92,7 @@ Result: `Name[2:10:18]: Print Text With Name`
 ---
 
 * Log All Print Data To File
-```
+```cpp
 #include "Logger.hpp"
 
 int main()
