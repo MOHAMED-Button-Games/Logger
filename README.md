@@ -15,6 +15,7 @@ int main()
 	Logger Log;
 	Log.Print("Hello, World!");
 	
+	system("Pause");
 	return 0;
 }
 ```
@@ -33,7 +34,8 @@ int main()
 	Log.AddText("Sub Text 2, ");
 	Log.AddText("Sub Text 3, ");
 	Log.Print("Print Text");
-  
+	
+	system("Pause");
 	return 0;
 }
 ```
@@ -52,7 +54,8 @@ int main()
 	Log.Print("Warning", LOG_WARN);
 	Log.Print("Success", LOG_SUCCESS);
 	Log.Print("Text", LOG_TEXT);
-  
+	
+  	system("Pause");
 	return 0;
 }
 ```
@@ -73,7 +76,8 @@ int main()
 {
 	Logger Log("Name");
 	Log.Print("Print Text With Name");
-  
+	
+	system("Pause");
 	return 0;
 }
 ```
