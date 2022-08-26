@@ -1,5 +1,5 @@
 # Logger
-Simple Logger
+Simple Header-Only Library For Logging
 
 ## Features
 * Print Text With Sub Text, Time, Types, And Name
