@@ -19,7 +19,7 @@
 //SOFTWARE.
 
 //Additions.Fixes
-//1.1
+//1.2
 
 //Created: 8/25/22
 #pragma once
@@ -51,7 +51,7 @@ private:
 	HANDLE _Handle = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
 	std::time_t _Time = std::time(0);
-	std::tm _TimeFormat;
+	std::tm _TimeFormat{};
 	std::string _TimeData;
 	bool _File = false;
 	std::string _FileName;
