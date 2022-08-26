@@ -18,6 +18,9 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+//(Additions/Changes).Fixes
+//1.1
+
 //Created: 8/25/22
 #pragma once
 
@@ -83,6 +86,8 @@ public:
 	//Outputted Text: Name[Type][Time]: Sub Text + Text
 	//Change The File Name More Than One Time
 	void FileName(const std::string& Name, const std::string& Ext = ".log");
+	//Get The File Data, For Reasons Like File Compression, Printing All The Logs In The Console, etc...
+	std::string FileData();
 	//Output The Log File
 	bool MakeFile();
 };
@@ -235,6 +240,11 @@ inline void Logger::Print(T Text, int Type)
 inline void Logger::FileName(const std::string& Name, const std::string& Ext)
 {
 	_FileName = Name + Ext;
+}
+
+inline std::string Logger::FileData()
+{
+	return _FileData;
 }
 
 inline bool Logger::MakeFile()
