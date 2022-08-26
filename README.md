@@ -4,7 +4,7 @@ Simple Header-Only Library For Logging
 ## Compilers
 > x64 C++
 - [X] MSVC
-- [ ] GCC (Not Tested)
+- [X] G++
 - [X] Clang/LLVM
 
 ## Features
