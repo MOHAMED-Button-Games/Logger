@@ -19,15 +19,19 @@ Simple Header-Only Library For Logging
 - `LOG_SUCCESS`
 - `LOG_TEXT`
 
-### Print: 
+### Init: 
+- `Logger(const std::string& Name, bool File = false)`
+- > Logger Init
 - `void Name(const std::string& Name)`
 - > Set The Logger Name
 - `void File(bool File, const std::string& Name = "", const std::string& Ext = ".log")`
 - > Set The Logger File, For Changing The Name Only Use `FileName()` Instead
+
+### Print: 
 - `void AddText(AnyType Text)`
 - > Add Sub Text, The Sub Text Will Be Printed Behind The Print Text
-- `void Print(AnyType Text, int Type = LOG_TEXT, bool File = true);`
-- > Print Text, Outputted Text: Name[Time]: Sub Text + Text
+- `void Print(AnyType Text, int Type = LOG_TEXT, bool File = true)`
+- > Print Text, The Type Arg Will Specify The Text Color, Outputted Text: Name[Time]: Sub Text + Text
 
 ### File: 
 - `void FileName(const std::string& Name, const std::string& Ext = ".log")`
@@ -37,7 +41,7 @@ Simple Header-Only Library For Logging
 - `void ClearFileData()`
 - > What Data??
 - `bool MakeFile()`
-- > Output The Log File
+- > Output The Log File, Outputted Text: Name[Type][Time]: Sub Text + Text
 
 ## Examples
 * Simple Print
