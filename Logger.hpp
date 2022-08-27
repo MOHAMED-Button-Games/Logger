@@ -19,7 +19,7 @@
 //SOFTWARE.
 
 //Additions.Fixes
-//2.2
+//3.2
 
 //Created: 8/25/22
 #pragma once
@@ -54,9 +54,11 @@ private:
 	std::tm _TimeFormat{};
 	std::string _TimeData;
 	bool _File = false;
-	std::string _FileName;
+	std::string _FileName = "*.log";
 	std::string _FileData;
 public:
+	//Init: 
+
 	Logger();
 	//Logger Init
 	Logger(const std::string& Name, bool File = false);
@@ -67,30 +69,57 @@ public:
 	//Set The Logger File
 	void File(bool File, const std::string& Name = "", const std::string& Ext = ".log");
 
-	//Add Sub Text, char|const char*|std::string|Numbers Overloads
+	//Print: 
+
+	//Add Sub Text, char Overload
 	//The Sub Text Will Be Printed Behind The Print Text
 	void AddText(char Text);
+
+	//Add Sub Text, const char* Overload
+	//The Sub Text Will Be Printed Behind The Print Text
 	void AddText(const char* Text);
+
+	//Add Sub Text, std::string Overload
+	//The Sub Text Will Be Printed Behind The Print Text
 	void AddText(const std::string& Text);
+
+	//Add Sub Text, Numbers Overload
+	//The Sub Text Will Be Printed Behind The Print Text
 	template<class T> void AddText(T Text);
 
-	//Print Text, char|const char*|std::string|Numbers Overloads
+	//Print Text, char Overload
 	//The Type Arg Will Specify The Text Color
 	//Outputted Text: Name[Time]: Sub Text + Text
 	void Print(char Text, int Type = LOG_TEXT, bool File = true);
+
+	//Print Text, const char* Overload
+	//The Type Arg Will Specify The Text Color
+	//Outputted Text: Name[Time]: Sub Text + Text
 	void Print(const char* Text, int Type = LOG_TEXT, bool File = true);
+
+	//Print Text, std::string Overload
+	//The Type Arg Will Specify The Text Color
+	//Outputted Text: Name[Time]: Sub Text + Text
 	void Print(const std::string& Text, int Type = LOG_TEXT, bool File = true);
+
+	//Print Text, Numbers Overload
+	//The Type Arg Will Specify The Text Color
+	//Outputted Text: Name[Time]: Sub Text + Text
 	template<class T> void Print(T Text, int Type = LOG_TEXT, bool File = true);
 
-	//Log File
-	//Outputted Text: Name[Type][Time]: Sub Text + Text
+	//File: 
+	
 	//Change The File Name More Than One Time
 	void FileName(const std::string& Name, const std::string& Ext = ".log");
+
 	//Get The File Data, For Reasons Like File Compression, Printing All The Logs In The Console, etc...
 	std::string FileData();
+
 	//What Data??
 	void ClearFileData();
+
 	//Output The Log File
+	//Outputted Text: Name[Type][Time]: Sub Text + Text
 	bool MakeFile();
 };
 
