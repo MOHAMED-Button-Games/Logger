@@ -11,6 +11,34 @@ Simple Header-Only Library For Logging
 * Print Text With Sub Text, Time, Types, And Name
 * Save All The Print Data Into A Log File After The Program Finishs Execution, Or At Any Point In The Program
 
+## Docs
+### Macros: 
+- `LOG_ERROR`
+- `LOG_CRITICALERROR`
+- `LOG_WARN`
+- `LOG_SUCCESS`
+- `LOG_TEXT`
+
+### Print: 
+- `void Name(const std::string& Name)`
+- > Set The Logger Name
+- `void File(bool File, const std::string& Name = "", const std::string& Ext = ".log")`
+- > Set The Logger File, For Changing The Name Only Use `FileName()` Instead
+- `void AddText(AnyType Text)`
+- > Add Sub Text, The Sub Text Will Be Printed Behind The Print Text
+- `void Print(AnyType Text, int Type = LOG_TEXT, bool File = true);`
+- > Print Text, Outputted Text: Name[Time]: Sub Text + Text
+
+### File: 
+- `void FileName(const std::string& Name, const std::string& Ext = ".log")`
+- > Change The File Name More Than One Time
+- `std::string FileData()`
+- > Get The File Data, For Reasons Like File Compression, Printing All The Logs In The Console, etc...
+- `void ClearFileData()`
+- > What Data??
+- `bool MakeFile()`
+- > Output The Log File
+
 ## Examples
 * Simple Print
 ```cpp
