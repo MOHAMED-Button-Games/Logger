@@ -114,3 +114,32 @@ Result: The File Should Be Outputted In The Program's Path, The Path And The Ext
 First Line: `Name[Text][2:26:41]: Make Lots of Prints To Be Stored`
 
 ![alt text](https://i.postimg.cc/0ytbMVjS/Example.png)
+
+---
+
+* Filter File Data
+```cpp
+#include "Logger.hpp"
+
+int main()
+{
+	Logger Log("Name", true);
+	Log.Print("Text");
+	Log.Print("Text");
+	Log.Print("This Text Should Not Be Saved", LOG_TEXT, false);
+	Log.Print("Text");
+	Log.Print("This Text Should Not Be Saved", LOG_TEXT, false);
+	
+	Log.MakeFile();
+	system("Pause");
+	return 0;
+}
+```
+Result: The File Should Be Filtered Of Any Unwanted Prints
+
+Name.log
+```
+Name[Text][16:48:46]: Text
+Name[Text][16:48:46]: Text
+Name[Text][16:48:46]: Text
+```
