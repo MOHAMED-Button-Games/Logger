@@ -25,7 +25,7 @@ int main()
 	return 0;
 }
 ```
-Result: `[2:10:18]: Print Text`
+Result: `[2:10:18]: Hello, World!`
 
 ---
 
