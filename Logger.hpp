@@ -19,7 +19,7 @@
 //SOFTWARE.
 
 //Additions.Fixes
-//3.3
+//4.3
 
 //Created: 8/25/22
 #pragma once
@@ -112,6 +112,9 @@ public:
 	//Change The File Name More Than One Time
 	void FileName(const std::string& Name, const std::string& Ext = ".log");
 
+	//Add Data To The File Data That Doesn't Necessarily Need To Be Printed
+	void AddToFileData(const std::string& Data);
+
 	//Get The File Data, For Reasons Like File Compression, Printing All The Logs In The Console, etc...
 	std::string FileData();
 
@@ -199,12 +202,11 @@ inline void Logger::Print(char Text, int Type, bool File)
 	_Time = std::time(0);
 	localtime_s(&_TimeFormat, &_Time);
 	_TimeData = '[' + std::to_string(_TimeFormat.tm_hour) + ':' + std::to_string(_TimeFormat.tm_min) + ':' + std::to_string(_TimeFormat.tm_sec) + ']';
-	std::cout << _Name << _TimeData << ": " << _SubText << Text << std::endl;
+	std::cout << _Name << _TimeData << ": " << _SubText << Text;
 	if (_File && File)
 	{
 		_FileData += _Name + _Type(Type) + _TimeData + ": " + _SubText;
 		_FileData += Text;
-		_FileData += "\n";
 	}
 	_SubText.clear();
 #ifdef _WIN64
@@ -220,12 +222,11 @@ inline void Logger::Print(const char* Text, int Type, bool File)
 	_Time = std::time(0);
 	localtime_s(&_TimeFormat, &_Time);
 	_TimeData = '[' + std::to_string(_TimeFormat.tm_hour) + ':' + std::to_string(_TimeFormat.tm_min) + ':' + std::to_string(_TimeFormat.tm_sec) + ']';
-	std::cout << _Name << _TimeData << ": " << _SubText << Text << std::endl;
+	std::cout << _Name << _TimeData << ": " << _SubText << Text;
 	if (_File && File)
 	{
 		_FileData += _Name + _Type(Type) + _TimeData + ": " + _SubText;
 		_FileData += Text;
-		_FileData += "\n";
 	}
 	_SubText.clear();
 #ifdef _WIN64
@@ -247,7 +248,7 @@ inline void Logger::Print(T Text, int Type, bool File)
 	_Time = std::time(0);
 	localtime_s(&_TimeFormat, &_Time);
 	_TimeData = '[' + std::to_string(_TimeFormat.tm_hour) + ':' + std::to_string(_TimeFormat.tm_min) + ':' + std::to_string(_TimeFormat.tm_sec) + ']';
-	std::cout << _Name << _TimeData << ": " << _SubText << Text << std::endl;
+	std::cout << _Name << _TimeData << ": " << _SubText << Text;
 	if (_File && File)
 	{
 		_FileData += _Name + _Type(Type) + _TimeData + ": " + _SubText;
@@ -260,7 +261,6 @@ inline void Logger::Print(T Text, int Type, bool File)
 		{
 			_FileData += std::to_string(double(Text));
 		}
-		_FileData += "\n";
 	}
 	_SubText.clear();
 #ifdef _WIN64
@@ -271,6 +271,11 @@ inline void Logger::Print(T Text, int Type, bool File)
 inline void Logger::FileName(const std::string& Name, const std::string& Ext)
 {
 	_FileName = Name + Ext;
+}
+
+inline void Logger::AddToFileData(const std::string& Data)
+{
+	_FileData += Data;
 }
 
 inline std::string Logger::FileData()
