@@ -36,6 +36,8 @@ Simple Header-Only Library For Logging
 ### File: 
 - `void FileName(const std::string& Name, const std::string& Ext = ".log")`
 - > Change The File Name More Than One Time
+- `void AddToFileData(const std::string& Data);`
+- > Add Data To The File Data That Doesn't Necessarily Need To Be Printed
 - `std::string FileData()`
 - > Get The File Data, For Reasons Like File Compression, Printing All The Logs In The Console, etc...
 - `void ClearFileData()`
