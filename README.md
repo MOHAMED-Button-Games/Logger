@@ -53,7 +53,7 @@ Simple Header-Only Library For Logging
 int main()
 {
 	Logger Log;
-	Log.Print("Hello, World!");
+	Log.Print("Hello, World!\n");
 	
 	system("Pause");
 	return 0;
@@ -73,7 +73,7 @@ int main()
 	Log.AddText("Sub Text 1, ");
 	Log.AddText("Sub Text 2, ");
 	Log.AddText("Sub Text 3, ");
-	Log.Print("Print Text");
+	Log.Print("Print Text\n");
 	
 	system("Pause");
 	return 0;
@@ -89,11 +89,11 @@ Result: `[2:10:18]: Sub Text 1, Sub Text 2, Sub Text 3, Print Text`
 int main()
 {
 	Logger Log;
-	Log.Print("Error", LOG_ERROR);
-	Log.Print("Critical Error", LOG_CRITICALERROR);
-	Log.Print("Warning", LOG_WARN);
-	Log.Print("Success", LOG_SUCCESS);
-	Log.Print("Text", LOG_TEXT);
+	Log.Print("Error\n", LOG_ERROR);
+	Log.Print("Critical Error\n", LOG_CRITICALERROR);
+	Log.Print("Warning\n", LOG_WARN);
+	Log.Print("Success\n", LOG_SUCCESS);
+	Log.Print("Text\n", LOG_TEXT);
 	
   	system("Pause");
 	return 0;
@@ -115,7 +115,7 @@ Result: If Your OS is Windows The Text Will Appear in Colors
 int main()
 {
 	Logger Log("Name");
-	Log.Print("Print Text With Name");
+	Log.Print("Print Text With Name\n");
 	
 	system("Pause");
 	return 0;
@@ -132,10 +132,11 @@ Result: `Name[2:10:18]: Print Text With Name`
 int main()
 {
 	Logger Log("Name", true);
-	Log.Print("Make Lots of Prints To Be Stored");
+	Log.Print("Make Lots of Prints To Be Stored\n");
 	for (int i = 0; i < 30; i++)
 	{
-		Log.Print(i);
+		Log.AddText(i);
+		Log.Print("\n");
 	}
 
 	Log.MakeFile();
@@ -158,11 +159,11 @@ First Line: `Name[Text][2:26:41]: Make Lots of Prints To Be Stored`
 int main()
 {
 	Logger Log("Name", true);
-	Log.Print("Text");
-	Log.Print("Text");
-	Log.Print("This Text Should Not Be Saved", LOG_TEXT, false);
-	Log.Print("Text");
-	Log.Print("This Text Should Not Be Saved", LOG_TEXT, false);
+	Log.Print("Text\n");
+	Log.Print("Text\n");
+	Log.Print("This Text Should Not Be Saved\n", LOG_TEXT, false);
+	Log.Print("Text\n");
+	Log.Print("This Text Should Not Be Saved\n", LOG_TEXT, false);
 	
 	Log.MakeFile();
 	system("Pause");
